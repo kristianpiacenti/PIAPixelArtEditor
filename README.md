@@ -1,1 +1,2 @@
-# PIAPixelArtEditor
+# PIA PixelArt: Editor
+
