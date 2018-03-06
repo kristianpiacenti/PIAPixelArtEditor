@@ -49,7 +49,7 @@ public class PIAEditorWindow : EditorWindow {
     float imageOffsetX = 0;
     float imageOffsetY = 0;
     
-    Vector2Int mouseCellCoordinate;
+    Vector2 mouseCellCoordinate;
     Color blackBarBGColor = new Color(0.1294f, 0.1294f, 0.1294f, 1.0000f);
 
     // invisible sliders that appear adding too many layers or frames
@@ -135,8 +135,12 @@ public class PIAEditorWindow : EditorWindow {
         PIAExportSettingsWindow.CloseWindow();
         PIAExtendedPreviewWindow.CloseWindow();
 
-        if(PIASession.Instance.IsDirty)
-            PIASession.Instance.SaveAsset();
+        if (PIASession.Instance.IsDirty) {
+            if (EditorUtility.DisplayDialog("Project Has Been Modified", "Do you want to save any changes made?", "Yes", "No"))
+                PIASession.Instance.SaveAsset();
+            else
+                PIASession.Instance.LoadNewAsset(16, 16);
+        }
     }
     private void Update()
     {
@@ -163,7 +167,7 @@ public class PIAEditorWindow : EditorWindow {
 
         mouseCellCoordinate = grid.WorldToCellPosition(PIAInputArea.MousePosition);
         if (mouseCellCoordinate.x < 0 || mouseCellCoordinate.y < 0 || mouseCellCoordinate.x >= PIASession.Instance.ImageData.Width || mouseCellCoordinate.y >= PIASession.Instance.ImageData.Height)
-            mouseCellCoordinate = new Vector2Int(-1, -1);
+            mouseCellCoordinate = new Vector2(-1, -1);
 
     }
 

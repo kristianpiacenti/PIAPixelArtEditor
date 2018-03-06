@@ -88,7 +88,6 @@ public class PIAFrame
         PIATexture.Wipe(frameTextureWithFilters);
         PIAImageData imageData = PIASession.Instance.ImageData;
         frameTextureWithFilters.filterMode = FilterMode.Point;
-        Color nativeColor = frameTextureWithFilters.GetPixel(0, 0);
 
         // caching hidden layers indexes
         List<int> hiddenLayersIndex = new List<int>();
@@ -101,46 +100,51 @@ public class PIAFrame
         // ordering up textures so the last layer is always drawn on top of the first layer
         textures = textures.OrderBy(x => x.LayerIndex).ToList();
 
+        int currentLayerTextureIndex = 0;
+
         // building the filtered texture from each sub-texture (layer) in the frame
-        foreach (var item in textures)
+        for (int i = 0; i < textures.Count; i++)
         {
+            var item = textures[i];
             // skipping hidden layers
             if (hiddenLayersIndex.Contains(item.LayerIndex))
+            {
                 continue;
+            }
 
             // if the sub-texture index is NOT the current selected index it gets painted transparent (alpha/2)
-            if (imageData.CurrentLayer == item.LayerIndex)
+            if (imageData.CurrentLayer != item.LayerIndex)
             {
                 for (int x = 0; x < PIASession.Instance.ImageData.Width; x++)
-                {
-                    for (int y = 0; y < PIASession.Instance.ImageData.Height; y++)
-                    {
-                        Color pixelColor = item.Texture.GetPixel(x, y);
-                        if (pixelColor.a > 0)
-                        {
-                            frameTextureWithFilters.SetPixel(x, y, pixelColor);
-                        }
-
-                    }
-                }
-            }
-            else
-            {
-                for (int x = 0; x < PIASession.Instance.ImageData.Width; x++)
-                {
                     for (int y = 0; y < PIASession.Instance.ImageData.Height; y++)
                     {
                         Color pixelColor = item.Texture.GetPixel(x, y);
                         pixelColor.a = pixelColor.a / 2;
-                        if (pixelColor.a > 0 && nativeColor.Equals(frameTextureWithFilters.GetPixel(x, y)))
+                        if (pixelColor.a > 0)
                         {
                             frameTextureWithFilters.SetPixel(x, y, pixelColor);
                         }
                     }
+            }
+            else
+                currentLayerTextureIndex = i;
+
+        }
+
+        // drawing current layer texture
+        for (int x = 0; x < PIASession.Instance.ImageData.Width; x++)
+            for (int y = 0; y < PIASession.Instance.ImageData.Height; y++)
+            {
+                Color pixelColor = textures[currentLayerTextureIndex].Texture.GetPixel(x, y);
+                if (pixelColor.a > 0)
+                {
+                    frameTextureWithFilters.SetPixel(x, y, pixelColor);
                 }
             }
-        }
+
         frameTextureWithFilters.Apply();
+
+        
 
         return frameTextureWithFilters;
     }

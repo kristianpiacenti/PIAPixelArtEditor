@@ -61,15 +61,16 @@ public class PIASession {
 
     #region Methods
 
-    public Texture2D LoadAsset()
+    public void LoadAsset()
     {
         OpenAsset(ref _imageData);
+        if (ImageData == null)
+            return;
 
         // it's getting pulled from default execution
         if (ImageData.CurrentFrame == null)
             ImageData.Init(16,16);
 
-        return ImageData.CurrentFrame.GetCurrentImage().Texture;
     }
     public PIASession()
     {
@@ -92,12 +93,19 @@ public class PIASession {
         return ImageData.CurrentFrame.GetCurrentImage().Texture;
     }
 
-    private void OpenAsset(ref PIAImageData output)
+    private void OpenAsset(ref PIAImageData asset)
     {
         string path = EditorUtility.OpenFilePanelWithFilters("Select Asset", "Assets/", new string[] { "ASSET", "asset" });
         if (string.IsNullOrEmpty(path))
             return;
-        output = AssetDatabase.LoadAssetAtPath<PIAImageData>(FileUtil.GetProjectRelativePath(path));
+
+        string internalPath = FileUtil.GetProjectRelativePath(path);
+        if (string.IsNullOrEmpty(internalPath)) {
+            EditorUtility.DisplayDialog("No Path Found", "Be sure to place your asset inside 'Asset/'.", "Ok");
+            return;
+        }
+
+        asset = AssetDatabase.LoadAssetAtPath<PIAImageData>(internalPath);
 
     }
 
@@ -187,7 +195,7 @@ public class PIASession {
         string path;
         if (isNew)
         {
-            path = EditorUtility.SaveFilePanel("Save Asset", "", ProjectName, "asset");
+            path = EditorUtility.SaveFilePanel("Save Asset", "Assets/", ProjectName, "asset");
             path = FileUtil.GetProjectRelativePath(path);
             if (string.IsNullOrEmpty(path))
                 return;

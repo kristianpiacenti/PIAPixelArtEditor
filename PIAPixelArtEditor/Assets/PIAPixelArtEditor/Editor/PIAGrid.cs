@@ -13,7 +13,7 @@ public class PIAGrid
 
     #region Methods
 
-    public Vector2Int WorldToCellPosition(Vector2 worldPosition)
+    public Vector2 WorldToCellPosition(Vector2 worldPosition)
     {
         // world position is transformed to body rect position so we can offset the body rect
         Vector2 localPosition = ParentToLocalPosition(worldPosition, PIAEditorWindow.Instance.BodyRect.position);
@@ -27,17 +27,17 @@ public class PIAGrid
         if (relY < 0)
             relY = -1;
 
-        Vector2Int cellPosition = new Vector2Int((int)relX, (int)relY);
+        Vector2 cellPosition = new Vector2((int)relX, (int)relY);
         return cellPosition;
     }
-    public Vector2Int CellToWorldPosition(Vector2Int gridPixel)
+    public Vector2 CellToWorldPosition(Vector2 gridPixel)
     {
         float relX = (gridPixel.x * CellWidth) + Grid.x;
         float relY = (gridPixel.y * CellWidth) + Grid.y;
-        Vector2Int worldPosition = new Vector2Int((int)relX, (int)relY);
+        Vector2 worldPosition = new Vector2((int)relX, (int)relY);
         Vector2 parentPosition = LocalToParentPosition(worldPosition, PIAEditorWindow.Instance.BodyRect.position);
 
-        return new Vector2Int((int)parentPosition.x, (int)parentPosition.y);
+        return new Vector2((int)parentPosition.x, (int)parentPosition.y);
     }
 
     #endregion
