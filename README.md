@@ -1,7 +1,7 @@
 PIA Pixel Art: Editor
 ========
 
-"Pixel Art: Editor" is a FREE bitmap editor tool designed to casual users who needs a simple solution built in Unity.
+"Pixel Art: Editor" is a FREE bitmap editor tool designed to casual users who need a simple solution built in Unity.
 
 Support: piacentikristian@hotmail.it
 
