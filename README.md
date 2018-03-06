@@ -1,41 +1,61 @@
-$project
+PIA Pixel Art: Editor
 ========
 
-$project will solve your problem of where to start with documentation,
-by providing a basic explanation of how to do it easily.
+"Pixel Art: Editor" is a FREE bitmap editor tool designed to casual users who needs a simple solution built in Unity.
 
-Look how easy it is to use:
+Donation: paypal.me/kristianpiacenti
+Support: piacentikristian@hotmail.it
 
-    import project
-    # Get your stuff done
-    project.do_stuff()
+Shortcuts:
+--------
+
+    [Q] = Paint
+    [E] = Erase
+    [Shift + E] = Filled Erase
+    [R] = Rectangle
+    [Shift + R] = Filled Rectangle
+    [T] = Dithering tool
+    
+    [Mouse wheel] = Zoom out / in
+    [WASD] = Adjust offset
 
 Features
 --------
 
-- Be awesome
-- Make things faster
+- Clear UI
+- Simple 2D Painting Tools 
+- Multiple layers
+- Multiple frames
+- Realtime animation preview
+- Export JPG or PNG
+- Export spritesheet
+- Texture2D import settings already set up for best result
+
+Other
+- Completely written in C# 
+- Clear code comments
 
 Installation
 ------------
 
-Install $project by running:
-
-    install project
+    import "PIAPixelArtEditor" package inside your Unity project
+    Unity toolbar -> "EditorTools" -> "PIAPixelArtEditor"
 
 Contribute
 ----------
 
-- Issue Tracker: github.com/$project/$project/issues
-- Source Code: github.com/$project/$project
+- Issue Tracker: https://github.com/kristianpiacenti/PIAPixelArtEditor/issues
+- Source Code: https://github.com/kristianpiacenti/PIAPixelArtEditor
 
 Support
 -------
 
-If you are having issues, please let us know.
-We have a mailing list located at: project@google-groups.com
+If you are having issues, please let me know at piacentikristian@hotmail.it
+
+Donation: paypal.me/kristianpiacenti
 
 License
 -------
 
-The project is licensed under the BSD license.
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
