@@ -3,7 +3,8 @@ PIA Pixel Art: Editor
 
 "Pixel Art: Editor" is a FREE bitmap editor tool designed to casual users who needs a simple solution built in Unity.
 
-Donation: paypal.me/kristianpiacenti
+Donation: https://paypal.me/kristianpiacenti
+
 Support: piacentikristian@hotmail.it
 
 Shortcuts:
@@ -52,7 +53,7 @@ Support
 
 If you are having issues, please let me know at piacentikristian@hotmail.it
 
-Donation: paypal.me/kristianpiacenti
+Donation: https://paypal.me/kristianpiacenti
 
 License
 -------
