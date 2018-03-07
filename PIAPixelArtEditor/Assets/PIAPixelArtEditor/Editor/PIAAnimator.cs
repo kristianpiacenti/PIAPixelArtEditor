@@ -48,6 +48,8 @@ public class PIAAnimator{
 
             // next frame
             currentFrameInPreview = (currentFrameInPreview + 1) % PIASession.Instance.ImageData.Frames.Count;
+            
+
         }
     }
 
@@ -62,7 +64,6 @@ public class PIAAnimator{
             output = imageData.Frames[currentFrameInPreview] == null ? imageData.Frames[0] : imageData.Frames[currentFrameInPreview];
         else
             output = imageData.Frames[0];
-
         return output;
     }
     #endregion

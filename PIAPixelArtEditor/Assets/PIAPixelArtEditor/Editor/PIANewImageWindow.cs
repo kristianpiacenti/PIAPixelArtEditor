@@ -20,8 +20,8 @@ public class PIANewImageWindow : EditorWindow
     private void OnGUI()
     {
         // we use always the same aspect ratio
-        width = EditorGUILayout.IntField("Width: ", width);
-        height = EditorGUILayout.IntField("Height: ", width);
+        width = EditorGUILayout.IntField("Width: ", Mathf.Max(1,width));
+        height = EditorGUILayout.IntField("Height: ", Mathf.Max(1, width));
 
         if (GUILayout.Button("Create"))
         {

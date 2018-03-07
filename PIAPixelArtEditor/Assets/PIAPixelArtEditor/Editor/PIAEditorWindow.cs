@@ -91,6 +91,7 @@ public class PIAEditorWindow : EditorWindow {
         window.minSize = new Vector2(600, 200);
         Texture2D windowIcon = Application.HasProLicense()? PIATextureDatabase.Instance.GetTexture("brush") : PIATextureDatabase.Instance.GetTexture("brushblack");
         window.titleContent = new GUIContent("Pixel Editor",windowIcon);
+        window.autoRepaintOnSceneChange = false;
         window.Show();
     }
 
@@ -146,8 +147,8 @@ public class PIAEditorWindow : EditorWindow {
     {
         PIAAnimator.Instance.Update();
 
-        // this could be painful in performance but it's necessary to get responsiveness
-        window.Repaint();
+        // this is painful performance 
+        //window.Repaint();
 
     }
     private void OnGUI()
@@ -168,7 +169,7 @@ public class PIAEditorWindow : EditorWindow {
         mouseCellCoordinate = grid.WorldToCellPosition(PIAInputArea.MousePosition);
         if (mouseCellCoordinate.x < 0 || mouseCellCoordinate.y < 0 || mouseCellCoordinate.x >= PIASession.Instance.ImageData.Width || mouseCellCoordinate.y >= PIASession.Instance.ImageData.Height)
             mouseCellCoordinate = new Vector2(-1, -1);
-
+        window.Repaint();
     }
 
     private void InitializeSections()
@@ -1006,7 +1007,7 @@ public class PIAEditorWindow : EditorWindow {
         {
             float deltaY = e.delta.y * (-1) * Time.fixedDeltaTime;
             scaleMultiplier += 0.7f * deltaY;
-            window.Repaint();
+            scaleMultiplier = Mathf.Max(0.2f, scaleMultiplier);
         }
     }
     public void ChangeImageOffset(Event e) {
