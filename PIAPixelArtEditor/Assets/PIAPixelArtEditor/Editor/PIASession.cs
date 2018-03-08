@@ -66,10 +66,13 @@ public class PIASession {
         OpenAsset(ref _imageData);
         if (ImageData == null)
             return;
-
         // it's getting pulled from default execution
         if (ImageData.CurrentFrame == null)
             ImageData.Init(16,16);
+
+        // when loading a new asset we want to reset the selection texture
+        PIAEditorWindow.Instance.SelectionTexture = new PIATexture();
+        PIAEditorWindow.Instance.SelectionTexture.Init(ImageData.Width, ImageData.Height, 0);
 
     }
     public PIASession()
