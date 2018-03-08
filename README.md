@@ -5,7 +5,7 @@ PIA Pixel Art: Editor
 
 Support: piacentikristian@hotmail.it
 
-Donation: https://paypal.me/kristianpiacenti
+Tips Jar: https://paypal.me/kristianpiacenti
 
 Shortcuts:
 --------
