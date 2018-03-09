@@ -149,6 +149,7 @@ public class PIADrawer{
                     if (e.button == 0)
                     {
                         frame.GetCurrentImage().Paint((int)pixelCoordinate.x, height - (int)pixelCoordinate.y - 1, FirstColor);
+                        Debug.Log(frame.GetCurrentImage().Texture.width + "," + frame.GetCurrentImage().Texture.height);
                     }
                     if (e.button == 1)
                     {

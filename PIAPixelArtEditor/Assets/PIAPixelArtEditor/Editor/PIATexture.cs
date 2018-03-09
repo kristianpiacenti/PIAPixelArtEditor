@@ -53,8 +53,10 @@ public class PIATexture
     [SerializeField]
     private int _layerIndex;
     private Texture2D texture;
-    int width = 16;
-    int height = 16;
+    [SerializeField]
+    private int width = 16;
+    [SerializeField]
+    private int height = 16;
     #endregion
 
     #region Properties
