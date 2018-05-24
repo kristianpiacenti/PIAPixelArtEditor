@@ -139,7 +139,7 @@ public class PIADrawer{
         int width = PIASession.Instance.ImageData.Width;
         int height = PIASession.Instance.ImageData.Height;
 
-        // this could have been a much better class based state machine but I'm fucking lazy (maybe in PRO version?)
+        // tools state machine
         switch (ToolType)
         {
             case PIAToolType.Paint:
